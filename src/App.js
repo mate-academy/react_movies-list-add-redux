@@ -1,39 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './App.scss';
-import { MoviesList } from './components/MoviesList';
-import { NewMovie } from './components/NewMovie';
-import data from './data.json';
-import { SearchMovie } from './components/SearchMovie';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { MoviePage } from './components/MoviePage';
+import { HomePage } from './components/HomePage';
+import { PageNotFound } from './components/PageNotFound';
 
-export class App extends Component {
-  state = {
-    movies: data,
-  };
-
-  addMovie = (movie) => {
-    this.setState(({ movies }) => {
-      const isMovieExists = movies
-        .some(({ imdbId }) => imdbId === movie.imdbId);
-
-      return isMovieExists
-        ? null
-        : { movies: [...movies, movie] };
-    });
-  };
-
-  render() {
-    const { movies } = this.state;
-
-    return (
-      <div className="page">
-        <div className="page-content">
-          <SearchMovie onAdd={this.addMovie} />
-          <MoviesList movies={movies} />
-        </div>
-        <div className="sidebar">
-          <NewMovie onAdd={this.addMovie} />
-        </div>
-      </div>
-    );
-  }
-}
+export const App = () => (
+  <Router basename={process.env.PUBLIC_URL}>
+    <Switch>
+      <Route exact path="/" component={HomePage} />
+      <Route path="/movies/:id" component={MoviePage} />
+      <Route path="/404" component={PageNotFound} />
+      <Route path="*" component={PageNotFound} />
+    </Switch>
+  </Router>
+);

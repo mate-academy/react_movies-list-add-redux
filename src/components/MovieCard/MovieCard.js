@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import './MovieCard.scss';
 
 export const MovieCard = (props) => {
@@ -8,10 +9,11 @@ export const MovieCard = (props) => {
     description,
     imgUrl,
     imdbUrl,
+    imdbId,
   } = props;
 
   return (
-    <div className="card">
+    <Link to={`/movies/${imdbId}`} className="card">
       <div className="card-image">
         <figure className="image is-4by3">
           <img
@@ -41,11 +43,12 @@ export const MovieCard = (props) => {
           <a href={imdbUrl}>IMDB</a>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 
 MovieCard.propTypes = {
+  imdbId: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   description: PropTypes.string,
   imgUrl: PropTypes.string.isRequired,

@@ -2,6 +2,23 @@
 
 ## Task
 
+- install `redux`, `redux-thunk`, `react-redux` libraries
+- use `redux` `Provider` in `App` component
+- create `store` folder and files: `actionTypes.js`, `actions.js`, `reducer.js`, `index.js`(or `store.js`) inside
+- create `reducer` with `initialState` corresponding to data you want to save in store
+- create at least one action type and action creator to add new movie to the list
+- create two thunks(thunk actions) - to search movie by title and to get movie by id
+    - (\*) create one reusable function to fetch movie and use it in thunks
+- connect `HomePage` and `MoviePage` to store. Use `movies`, `addMovie`, `searchMovie`, `getMovieById` from store instead of local state and methods.
+    - after these changes `HomePage` should become functional component, `SearchMovie` should have only `searchWord` in state,
+    `MoviePage` should not have local state, only lifecycle hook
+
+## Extra tasks
+
+- create action and store field to save fetch errors, show error from store in `SearchMovie` component if movie is not found
+- add `isLoading` field in redux state. Show loader when needed in `SearchMovie` component and `MoviePage` component.
+- add ability to remove movie from list. show remove button on `MovieCard` and/or `MoviePage`
+
 ## Workflow
 
 - Fork the repository with task
